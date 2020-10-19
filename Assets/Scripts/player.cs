@@ -11,10 +11,15 @@ public class player : MonoBehaviour
     private float horisontaalinenPyorinta = 0;
     private float xRotation = 0f;
 
+    public float hyppyvoima = 30f;
+    public float painovoima = 5f;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -36,6 +41,15 @@ public class player : MonoBehaviour
         nopeus = transform.rotation * nopeus;
 
         hahmokontrolleri.SimpleMove(nopeus);
+
+        if (Input.GetKeyDown("space"))
+        {
+            print("space key was pressed");
+            nopeus.y = hyppyvoima;
+        }
+
+        nopeus.y -= painovoima * Time.deltaTime;
+        hahmokontrolleri.Move(nopeus * Time.deltaTime);
 
     }
 }
