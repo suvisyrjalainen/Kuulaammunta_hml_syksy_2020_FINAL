@@ -14,7 +14,11 @@ public class player : MonoBehaviour
     public float hyppyvoima = 30f;
     public float painovoima = 5f;
 
-    
+    public Transform groundCheck;
+    public LayerMask groundMask;
+    public float groundDistance = 0.4f;
+    private bool isGrounded;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,8 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
         CharacterController hahmokontrolleri = GetComponent<CharacterController>();
         float horizontal = Input.GetAxis("Horizontal") * 5;
         float vertical = Input.GetAxis("Vertical") * 5;
@@ -36,13 +42,13 @@ public class player : MonoBehaviour
         xRotation = vertikaalinenPyorinta;
         xRotation = Mathf.Clamp(xRotation, -45f, 45f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, horisontaalinenPyorinta, 0);
+        transform.localRotation = Quaternion.Euler(0, horisontaalinenPyorinta, 0);
 
         nopeus = transform.rotation * nopeus;
 
         hahmokontrolleri.SimpleMove(nopeus);
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && isGrounded)
         {
             print("space key was pressed");
             nopeus.y = hyppyvoima;
@@ -51,5 +57,11 @@ public class player : MonoBehaviour
         nopeus.y -= painovoima * Time.deltaTime;
         hahmokontrolleri.Move(nopeus * Time.deltaTime);
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 }
