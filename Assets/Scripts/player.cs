@@ -19,11 +19,13 @@ public class player : MonoBehaviour
     public float groundDistance = 0.4f;
     private bool isGrounded;
 
+    public Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,16 @@ public class player : MonoBehaviour
         {
             print("space key was pressed");
             nopeus.y = hyppyvoima;
+        }
+
+        
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            anim.SetBool("Walk", true);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
         }
 
         nopeus.y -= painovoima * Time.deltaTime;

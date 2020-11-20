@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 817167010}
   - component: {fileID: 817167012}
   - component: {fileID: 817167013}
-  - component: {fileID: 817167014}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -389,6 +388,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundDistance: 0.2
+  anim: {fileID: 0}
 --- !u!136 &817167013
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -403,25 +403,6 @@ CapsuleCollider:
   m_Height: 4.29894
   m_Direction: 1
   m_Center: {x: -0.04778251, y: 1.6494701, z: 0}
---- !u!95 &817167014
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817167009}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13248feaf934c774d8f7c626f3ee14f2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,11 +1341,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3826001193341641059}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 5dd5cf21d8b6df44eb36f99136d0e751, type: 3}
   m_Controller: {fileID: 9100000, guid: 13248feaf934c774d8f7c626f3ee14f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1683,7 +1664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3826001193341641059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4819883141219150663}
