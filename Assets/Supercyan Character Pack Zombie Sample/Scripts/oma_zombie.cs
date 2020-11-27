@@ -13,6 +13,10 @@ public class oma_zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CharacterController hahmokontrolleri = GetComponent<CharacterController>();
+
+        Vector3 nopeus = new Vector3(0, 0, 1);
+
+        hahmokontrolleri.SimpleMove(nopeus);
     }
 }
