@@ -31,7 +31,7 @@ public class zombie : MonoBehaviour
         {
             print("osui seinaan");
         }
-        if (other.gameObject.tag == "seina1")
+        if (other.gameObject.tag == "seina")
         {
             print("osui seina ykkoseen");
         }
