@@ -7,6 +7,10 @@ public class zombie : MonoBehaviour
 
     public float eteenpain_nopeus = 1.0f;
 
+    string suunta = "eteenpain";
+
+    private float horisontaalinenPyorinta = 0;
+
     int layer_index;
     //public LayerMask includeLayers;
     public LayerMask wallMask;
@@ -21,6 +25,11 @@ public class zombie : MonoBehaviour
     {
         CharacterController hahmokontrolleri = GetComponent<CharacterController>();
         Vector3 nopeus = new Vector3(0, 0, eteenpain_nopeus);
+
+        transform.localRotation = Quaternion.Euler(0, horisontaalinenPyorinta, 0);
+
+        nopeus = transform.rotation * nopeus;
+
         hahmokontrolleri.SimpleMove(nopeus);
     }
 
@@ -39,11 +48,12 @@ public class zombie : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        int kaannos = 0;
+        kaannos = Random.Range(90, 270);
+
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            print("osui seinaan");
-            transform.rotation *= Quaternion.Euler(0, 180, 0);
-            eteenpain_nopeus = -1.0f;
+            horisontaalinenPyorinta += kaannos;
         }
     }
 
