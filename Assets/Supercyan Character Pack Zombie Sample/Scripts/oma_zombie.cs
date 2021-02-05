@@ -7,7 +7,8 @@ public class oma_zombie : MonoBehaviour
     // Start is called before the first frame update
     int eteenpain_nopeus = -2;
 
-    string suunta = "taaksepain";
+    private float horisontaalinenPyorinta = 270;
+
     void Start()
     {
         
@@ -20,38 +21,22 @@ public class oma_zombie : MonoBehaviour
 
         Vector3 nopeus = new Vector3(eteenpain_nopeus, 0, 0);
 
-        
-        //nopeus = transform.rotation * nopeus;
+        transform.localRotation = Quaternion.Euler(0, horisontaalinenPyorinta, 0);
+
+        nopeus = transform.rotation * nopeus;
 
         hahmokontrolleri.SimpleMove(nopeus);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        
+        int kaannos = 0;
+        kaannos = Random.Range(90, 270);
 
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        if (collision.gameObject.tag == "seina")
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
-            
-            int kaannos = 180;
-            kaannos = Random.Range(90, 270);
-
-            //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("Tormasin seinaan");
-            transform.rotation *= Quaternion.Euler(0, kaannos, 0);
-
-            if (suunta == "eteenpain")
-            {
-                eteenpain_nopeus = -2;
-                suunta = "taaksepain";
-            }
-            else
-            {
-                eteenpain_nopeus = 2;
-                suunta = "eteenpain";
-            }
-            
+            horisontaalinenPyorinta += kaannos;
         }
     }
+
 }
